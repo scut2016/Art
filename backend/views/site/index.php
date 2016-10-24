@@ -1,53 +1,43 @@
-<?php
+<style>
+    .menu_box h3{
+        margin:0 auto;
+    }
+</style>
 
-/* @var $this yii\web\View */
+	<!--左侧导航 开始-->
+	<div class="menu_box">
+		<ul>
+            <li>
+            	<h3><i class="fa fa-fw fa-clipboard"></i>常用操作</h3>
+                <ul class="sub_menu">
+                    <li><a href="add.html" target="main"><i class="fa fa-fw fa-plus-square"></i>添加页</a></li>
+                    <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>列表页</a></li>
+                    <li><a href="tab.html" target="main"><i class="fa fa-fw fa-list-alt"></i>tab页</a></li>
+                    <li><a href="img.html" target="main"><i class="fa fa-fw fa-image"></i>图片列表</a></li>
+                </ul>
+            </li>
+            <li>
+            	<h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
+                <ul class="sub_menu">
+                    <li><a href="#" target="main"><i class="fa fa-fw fa-cubes"></i>网站配置</a></li>
+                    <li><a href="#" target="main"><i class="fa fa-fw fa-database"></i>备份还原</a></li>
+                </ul>
+            </li>
+            <li>
+            	<h3><i class="fa fa-fw fa-thumb-tack"></i>工具导航</h3>
+                <ul class="sub_menu">
+                    <li><a href="http://www.yeahzan.com/fa/facss.html" target="main"><i class="fa fa-fw fa-font"></i>图标调用</a></li>
+                    <li><a href="http://hemin.cn/jq/cheatsheet.html" target="main"><i class="fa fa-fw fa-chain"></i>Jquery手册</a></li>
+                    <li><a href="http://tool.c7sky.com/webcolor/" target="main"><i class="fa fa-fw fa-tachometer"></i>配色板</a></li>
+                    <li><a href="element.html" target="main"><i class="fa fa-fw fa-tags"></i>其他组件</a></li>
+                </ul>
+            </li>
+        </ul>
+	</div>
+	<!--左侧导航 结束-->
 
-$this->title = 'My Yii Application';
-?>
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>
+	<!--主体部分 开始-->
+	<div class="main_box">
+		<iframe src="<?=\yii\helpers\Url::toRoute('site/info')?>" frameborder="0" width="100%" height="100%" name="main"></iframe>
+	</div>
+	<!--主体部分 结束-->

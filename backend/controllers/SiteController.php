@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'roles'=>['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','captcha','info'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -73,6 +73,10 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionInfo()
+    {
+        return $this->renderPartial('info');
+    }
     /**
      * Login action.
      *

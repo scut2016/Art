@@ -25,6 +25,10 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<?=Html::cssFile('@web/css/ch-ui.admin.css')?>
+<?=Html::cssFile('@web/css/font/css/font-awesome.min.css')?>
+<?=Html::jsFile('@web/js/ch-ui.admin.js')?>
+
 <div class="wrap">
     <?php
     NavBar::begin([
