@@ -54,25 +54,25 @@ class Tree extends Component
      * @param $html string 上下层级之间的标示符号
      * @return mixed
      **/
-    public  function sort($pid = 0, $level = 0, $html = '-')
-    {
-        if (empty($this->list))
-        {
-            return false;
-        }
-        static $tree = array();
-        foreach ($this->list as $v)
-        {
-            if ($v[$this->_pk] == $pid)
-            {
-                $v['sort'] = $level + 1;
-                $v['html'] = str_repeat($html, $level);
-                $tree[$v[$this->_sk]] = $v;
-                self::sort($v[$this->_sk], $level + 1);
-            }
-        }
-        return $tree;
-    }
+//       public  function sort($pid = 0, $level = 0, $html = '-')
+//    {
+//        if (empty($this->list))
+//        {
+//            return false;
+//        }
+//        static $tree = array();
+//        foreach ($this->list as $v)
+//        {
+//            if ($v[$this->_pk] == $pid)
+//            {
+//                $v['sort'] = $level + 1;
+//                $v['html'] = str_repeat($html, $level);
+//                $tree[$v[$this->_sk]] = $v;
+//                self::sort($v[$this->_sk], $level + 1);
+//            }
+//        }
+//        return $tree;
+//    }
 
     /**
      * 获取分类的无限极子分类，以树型结构显示
@@ -139,27 +139,82 @@ class Tree extends Component
      * @param $type bool true-返回分类数组 false-返回分类id
      * @return mixed
      **/
-    public  function sons($id, $type = true)
+    public  function sons($id, $level=0, $html='_')
     {
         if (empty($this->list))
         {
             return false;
         }
-//    static $info = [];
         $info = [];
-        foreach ($this->list as $val)
-        {
-            if ($val[$this->_pk] == $id)
-            {
-                $info[$val[$this->_sk]] = $type ? $val : $val[$this->_sk];
-                if (self::has_son($val[$this->_sk]))
-                {
-                    self::sons($val[$this->_sk], $type);
-                }
-            }
+        if(!isset($this->list[$id])){
+            return $info;
         }
+        $temp = $this->list[$id];
+        $temp['sort'] = $level;
+        $temp['html'] = str_repeat($html, $level);
+        $info[$id] = $temp;
+        $info = ArrayHelper::merge($info,self::sort($id,$level+1,$html))  ;
         return $info;
     }
+
+
+    /**
+     * 获取格式化的树形数据
+     * @param $pid int $list中顶级分类id
+     * @param $level int $list中顶级分类的层级
+     * @param $html string 上下层级之间的标示符号
+     * @return mixed
+     **/
+    public  function sort($pid = 0, $level = 0, $html = '-')
+    {
+        $tree = array();
+        if (empty($this->list))
+        {
+            return $tree;
+        }
+
+        foreach ($this->list as $v)
+        {
+            if ($v[$this->_pk] == $pid)
+            {
+                $v['sort'] = $level ;
+                $v['html'] = str_repeat($html, $level);
+                $tree[$v[$this->_sk]] = $v;
+                $tree = ArrayHelper::merge($tree,self::sort($v[$this->_sk], $level + 1, $html))  ;
+            }
+        }
+        return $tree;
+    }
+
+
+
+    /**
+     * 获取所有子级分类对应层级关系
+     * @param $id int 子分类id
+     * @param $type bool true-返回分类数组 false-返回分类id
+     * @return mixed
+     **/
+//    public  function sons($id, $type = true)
+//    {
+//        if (empty($this->list))
+//        {
+//            return false;
+//        }
+////    static $info = [];
+//        $info = [];
+//        foreach ($this->list as $val)
+//        {
+//            if ($val[$this->_pk] == $id)
+//            {
+//                $info[$val[$this->_sk]] = $type ? $val : $val[$this->_sk];
+//                if (self::has_son($val[$this->_sk]))
+//                {
+//                    self::sons($val[$this->_sk], $type);
+//                }
+//            }
+//        }
+//        return $info;
+//    }
 
     /**
      * 获取所有儿子分类
