@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <?=$form->field($model,'verifyCode')->widget(\yii\captcha\Captcha::className(),[
-                    'template'=>'<div class="row"><div class="col-lg-4">{input}{image}</div></div>'
+                    'template'=>'<div class="row"><div class="col-lg-8">{input}</div><div class="col-lg-4">{image}</div></div>'
                 ])?>
 
 
