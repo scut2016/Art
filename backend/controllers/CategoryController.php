@@ -7,6 +7,7 @@
 
 namespace backend\controllers;
 
+use common\befaviors\AddViews;
 use common\models\Category;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -16,8 +17,15 @@ class CategoryController extends Controller
 {
     public function actionIndex()
     {
-        dd(Category::parents(12));
-        dd(Category::tree());
+//      dd(Category::parents(29));
+//      dd(Category::sons(1));
+        $com=Category::treeComponent();
+        $bef=new AddViews();
+        $model=new Category();
+        $model->attachBehavior('tt', $bef);
+        dd($model->getBehaviors());
+
+
     }
 
     public function behaviors()

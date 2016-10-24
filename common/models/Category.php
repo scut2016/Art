@@ -43,7 +43,7 @@ class Category extends ActiveRecord
         return $component->sort($pid,$level,$html);
     }
 //找子节点
-    public static function sons($id,$type=true,$flag=false)
+    public static function sons($id,$type=true,$flag=true)
     {
         $component=self::treeComponent();
         if($flag)//返回不带自身的数组
