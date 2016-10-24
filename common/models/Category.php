@@ -56,12 +56,13 @@ class Category extends ActiveRecord
             return $arr;
         }
     }
+    //返回所有上级节点，包含自身
 public static function parents($id,$type=true,$reverse=true)
 {
     $component=self::treeComponent();
     return $reverse?array_reverse($component->parents($id)):$component->parents($id);
 }
-    
+    //根据主键获取分类
     public static function categoryById($id)
     {
         $temp=self::findOne($id);

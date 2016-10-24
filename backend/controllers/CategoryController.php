@@ -8,6 +8,8 @@
 namespace backend\controllers;
 
 use common\models\Category;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 class CategoryController extends Controller
@@ -16,5 +18,30 @@ class CategoryController extends Controller
     {
         dd(Category::parents(12));
         dd(Category::tree());
+    }
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'add'],
+                'rules' => [
+                    // 允许认证用户
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // 默认禁止其他用户
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['get'],
+                    'add'=>['post'],
+                ],
+            ],
+        ];
     }
 }

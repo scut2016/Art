@@ -28,7 +28,7 @@ class SiteController extends Controller
                         'roles'=>['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index','captcha','info'],
+                        'actions' => ['logout', 'index','captcha','info','login'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -90,7 +90,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+//            return $this->goBack();
+            $this->redirect('index');
         } else {
             return $this->render('login', [
                 'model' => $model,
