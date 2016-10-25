@@ -14,25 +14,23 @@ use yii\db\BaseActiveRecord;
 
 class AddViews extends AttributeBehavior
 {
-
-    public $id;//id
-    public $views;//查看次数
-
-    public function init()
+    public $field;
+    function init()
     {
         parent::init();
-
         if (empty($this->attributes)) {
             $this->attributes = [
-                BaseActiveRecord::EVENT_AFTER_FIND => [$this->views],
+                ActiveRecord::EVENT_AFTER_FIND => [$this->field],
             ];
         }
     }
-
-
-    public function add()
+    protected function getValue($event)
     {
-        dd('adddd');
+        $field=$this->field;
+        if ($this->value === null) {
+            return $event->sender->$field+1;
+        }
+        return parent::getValue($event);
     }
 
 }

@@ -1,35 +1,33 @@
 <?php
 /**
- * 文件名：CategoryController.php
+ * 文件名：ArticleController.php
  * 文件说明:
- * 时间: 2016/10/24.13:10
+ * 时间: 2016/10/25.9:34
  */
 
 namespace backend\controllers;
-use common\models\Category;
+
+use common\models\Article;
+
+use yii\db\ActiveRecord;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
-class CategoryController extends Controller
+class ArticleController extends Controller
 {
-    public function actionIndex()
+    function actionIndex()
     {
-//      dd(Category::parents(29));
-//      dd(Category::sons(1));
-//        $com=Category::treeComponent();
-//        $bef=new AddViews();
-//        $model=new Category();
-//        $model->attachBehavior('tt', $bef);
-//        dd($model->getBehaviors());
-
-
-
+       $art= Article::findOne(11);
+        dd($art);
+        $art->art_title='121212';
+        dd($art->save());
     }
 
     public function behaviors()
     {
         return [
+          
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['index', 'add'],
@@ -46,7 +44,7 @@ class CategoryController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['get'],
-                    'add'=>['post'],
+                    'add' => ['post'],
                 ],
             ],
         ];
