@@ -35,6 +35,7 @@ class Tree extends Component
         {
             return false;
         }
+        $this->list=[];
         //对数组进行预处理
         foreach ($cat_list as $key => $val)
         {
@@ -139,7 +140,7 @@ class Tree extends Component
      * @param $type bool true-返回分类数组 false-返回分类id
      * @return mixed
      **/
-    public  function sons($id, $level=0, $html='_')
+    public  function sons($id, $level=0, $html='-')
     {
         if (empty($this->list))
         {
