@@ -8,6 +8,7 @@
 namespace common\models;
 
 use common\behaviors\AddViews;
+use yii\base\Event;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 
@@ -27,4 +28,13 @@ class Article extends ActiveRecord
 //        },
      ],];
     }
+    public function test(Event $event)
+    {
+//        dd($event->time);
+//        dd($event->author);
+//        dd($event->title);
+        dd($event->data);
+        $event->send();
+    }
+    
 }

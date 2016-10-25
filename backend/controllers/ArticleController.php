@@ -7,6 +7,7 @@
 
 namespace backend\controllers;
 
+use common\events\SendMail;
 use common\models\Article;
 
 use yii\db\ActiveRecord;
@@ -16,12 +17,25 @@ use yii\web\Controller;
 
 class ArticleController extends Controller
 {
+
     function actionIndex()
     {
-       $art= Article::findOne(11);
-        dd($art);
-        $art->art_title='121212';
-        dd($art->save());
+//       $art= Article::findOne(11);
+//        dd($art);
+//        $art->art_title='121212';
+//        dd($art->save());
+       $art=new Article();
+       $event=new SendMail();
+        $event->from=\Yii::$app->params['admin'];
+        $event->content=$art->findOne(1);
+        dd($event);
+//        $event->time=time();
+//        $event->author='lisi';
+//        $event->title='odifodfiodfi';
+//       $this->on('ok',[$art,'test'],'canshu');
+//        $this->trigger('ok',$event);
+       dd( $event->from);
+        
     }
 
     public function behaviors()
