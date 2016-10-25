@@ -7,7 +7,7 @@
 
 namespace common\models;
 
-use common\befaviors\AddViews;
+use common\behaviors\AddViews;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 

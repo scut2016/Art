@@ -5,7 +5,7 @@
  * 时间: 2016/10/24.16:16
  */
 
-namespace common\befaviors;
+namespace common\behaviors;
 
 use yii\base\Behavior;
 use yii\behaviors\AttributeBehavior;
@@ -20,7 +20,7 @@ class AddViews extends AttributeBehavior
         parent::init();
         if (empty($this->attributes)) {
             $this->attributes = [
-                ActiveRecord::EVENT_AFTER_FIND => [$this->field],
+                ActiveRecord::EVENT_AFTER_FIND => $this->field,
             ];
         }
     }
